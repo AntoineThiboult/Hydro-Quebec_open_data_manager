@@ -58,10 +58,10 @@ def collect_archive_insert_measurements(metadata_file_path, archive_path, databa
         return
 
     data.archive(archive_path, json)
-    database.insert_measurements(metadata_file_path, database_name)
+    database.insert_measurements(json, metadata_file_path, database_name)
 
 
-def scheduler(metadata_file_path, archive_path, database_name):
+def scheduler(metadata_file_path, archive_path, database_name, send_mail):
     """
     Program automatic collection, archiving and insertion of measurements
 
@@ -80,7 +80,8 @@ def scheduler(metadata_file_path, archive_path, database_name):
     """
 
     schedule.every().day.at("12:40").do( collect_archive_insert_measurements,
-                                        metadata_file_path, archive_path, database_name)
+                                        metadata_file_path, archive_path,
+                                        database_name, send_mail)
     while True:
         schedule.run_pending()
         time.sleep(1)

@@ -30,7 +30,7 @@ hdm.database.initialize(shp_file_path, metadata_file_path, database_name)
 
 ### Example 3: Automatic collection, archiving and insertion into the database.
 # Can send an email if it continuously fail retrieving data (edit utils.send_warning_mail )
-hdm.utils.collect_archive_insert_measurements(metadata_file_path, archive_path, database_name, send_mail=True)
+hdm.utils.scheduler(metadata_file_path, archive_path, database_name, send_mail=True)
 
 
 ### Example 4: Read archive
